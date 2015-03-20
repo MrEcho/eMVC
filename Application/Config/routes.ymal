@@ -1,0 +1,8 @@
+"default":
+  "default":
+    Controller:  Main
+    Function: index
+"index":
+  "default":
+    Controller:  Main
+    Function: index

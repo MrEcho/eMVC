@@ -1,0 +1,19 @@
+{
+	"name": "mrecho.net/eMVC",
+	"description": "My own MVC framework",
+	"minimum-stability": "stable",
+	"license": "proprietary",
+	"authors": [
+		{
+			"name": "Trevor Benedict",
+			"email": "mrecho@gmail.com"
+		}
+	],
+	"require": {
+		"twig/twig": "1.18.0",
+		"symfony/yaml": "dev-master"
+	},
+	"autoload": {
+		"psr-0": {"eMVC\\": "eMVC/"}
+	}
+}
