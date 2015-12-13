@@ -9,6 +9,7 @@
 namespace Application\Objects;
 
 
-class myDatabase {
+class myDatabase
+{
 
 } 

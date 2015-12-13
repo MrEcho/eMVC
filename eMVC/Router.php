@@ -28,7 +28,7 @@ class Router {
         $layout = $myRoutes->getLayout();
 
         $request = $_SERVER['REQUEST_URI'];
-        //print_r($layout);
+        $domain = $_SERVER['SERVER_NAME'];
 
         $split = explode("/", $request);
         $split = array_filter($split, 'strlen');
@@ -42,7 +42,7 @@ class Router {
         }
 
         //echo '<pre>';
-        //print_r($path);
+        //print_r($layout);
         //echo '</pre>';
 
         if(strlen(@$path[0]) >=1 ) { $controler = $path[0];} else { $controler = "default"; }
@@ -52,17 +52,28 @@ class Router {
         $validf = false;
         $loadcontroler = "";
         $loadfunction = "";
-        if(@$layout[$controler]){
+
+        //try to find the base
+        $domain_root = "default";
+        if (isset($layout["$domain"])) {
+            $domain_root = $domain;
+        }
+        //echo $domain.' '. $domain_root;
+
+        if (@$layout[$domain_root][$controler]) {
             $validc = true;
-            if(@$layout[$controler][$function]){
+            if (@$layout[$domain_root][$controler][$function]) {
                 $validf = true;
-                $loadcontroler = $layout[$controler][$function]['Controller'];
-                $loadfunction = $layout[$controler][$function]['Function'];
+                $loadcontroler = $layout[$domain_root][$controler][$function]['Controller'];
+                $loadfunction = $layout[$domain_root][$controler][$function]['Function'];
             }
-            else{ http_response_code(404); }
+            else {
+                http_response_code(404);
+            }
         } else {
             http_response_code(404);
         }
+
 
         unset($layout);
 
@@ -70,6 +81,9 @@ class Router {
             $class = '\\Application\\Controller\\' . $loadcontroler;
             $c = new $class();
             $c->$loadfunction($path);
+        }
+        else {
+            http_response_code(404);
         }
     }
 

@@ -4,23 +4,33 @@ namespace Application\Controller;
 
 use Application\Base\BaseController;
 
-class Main extends BaseController{
+use \Application\Models\tabs\FirstClass;
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+class Main extends BaseController
+{
 
-    public function index(){
-        $this->setupTwig();
+	public function __construct() {
+		parent::__construct();
+	}
 
-        $this->load_module("\\Application\\Models\\tabs\\FirstClass","first");
+	public function index() {
+		$this->setupTwig();
 
-        $this->session->test();
-        $this->first->first();
+		$this->first = new FirstClass();
 
-        echo $this->twig->render('index.html');
+		//$this->modules['session']->test();
+		//$first = $this->modules['first'];
 
-    }
+		$this->first->first();
+
+
+		echo $this->twig->render('index.html', $this->view);
+
+		//echo '<pre>'; print_r($this);  echo '</pre>';
+	}
+
+	public function test2() {
+		echo "test2";
+	}
 
 } 

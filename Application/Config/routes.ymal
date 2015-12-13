@@ -1,8 +1,18 @@
 "default":
-  "default":
-    Controller:  Main
-    Function: index
-"index":
-  "default":
-    Controller:  Main
-    Function: index
+    "default":
+        "default":
+            Controller:  Main
+            Function: index
+    "index":
+        "default":
+            Controller:  Main
+            Function: index
+"test2.com":
+    "default":
+        "default":
+            Controller:  Main
+            Function: test2
+    "index":
+        "default":
+            Controller:  Main
+            Function: test2

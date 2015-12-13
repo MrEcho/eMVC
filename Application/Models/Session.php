@@ -4,12 +4,11 @@ namespace Application\Models;
 
 use eMVC\core\ModelCore;
 
-class Session extends ModelCore{
+class Session extends ModelCore
+{
 
-    public function test()
-    {
-
-        echo $this->appPath;
-    }
+	public function test() {
+		echo $this->appPath;
+	}
 
 }

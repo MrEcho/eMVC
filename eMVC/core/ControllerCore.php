@@ -12,6 +12,7 @@ class ControllerCore {
 
     public $database;
     public $appPath;
+    public $modules = array();
 
     public function __construct(){
         self::$instance =& $this;
@@ -55,7 +56,7 @@ class ControllerCore {
         //{
             //require_once($this->appPath .'Models/'.$path.$model.'.php');
 
-            $this->$name = new $model();
+        $this->modules[$name] = new $model();
         //}
 
     }

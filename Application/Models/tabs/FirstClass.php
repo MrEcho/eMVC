@@ -4,11 +4,14 @@ namespace Application\Models\tabs;
 
 use eMVC\core\ModelCore;
 
-class FirstClass extends ModelCore{
+class FirstClass extends ModelCore
+{
 
-    public function first(){
+	public function first() {
 
-        echo " firstclass.first()";
-    }
+		//echo '<pre>'; print_r($this->modules);  echo '</pre>';
+
+		$this->session->test();
+	}
 
 }

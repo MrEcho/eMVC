@@ -4,9 +4,10 @@ namespace Application\Models;
 
 use eMVC\core\ModelCore;
 
-class Logger extends ModelCore{
+class Logger extends ModelCore
+{
 
-    public function error($input){
+	public function error($input) {
 
-    }
+	}
 }
