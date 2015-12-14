@@ -2,13 +2,16 @@
 
 namespace Application\Models;
 
-use eMVC\core\ModelCore;
+use Application\Base\Container;
 
-class Session extends ModelCore
+class Session
 {
 
+	public function __construct(Container $container) {
+	}
+
 	public function test() {
-		echo $this->appPath;
+		echo "moo";
 	}
 
 }

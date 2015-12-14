@@ -3,6 +3,7 @@
 namespace eMVC\core;
 
 
+use Application\Base\Container;
 use
     eMVC\Router;
 
@@ -10,17 +11,19 @@ class ControllerCore {
 
     private static $instance;
 
-    public $database;
+	/** @var \Application\Base\Container $container */
+	public $container;
     public $appPath;
-    public $modules = array();
 
-    public function __construct(){
-        self::$instance =& $this;
+	public function __construct(Container $container) {
+
 
         $router = Router::get_instance();
 
-        $this->database = $router->database;
+		$this->container = $container;
         $this->appPath = $router->appPath;
+
+		self::$instance =& $this;
     }
 
     public static function &get_instance()
@@ -37,27 +40,15 @@ class ControllerCore {
 
     protected function load_module($model, $name)
     {
-        /*
-        $path = '';
-        // Is the model in a sub-folder? If so, parse out the filename and path.
-        if (($last_slash = strrpos($model, '/')) !== FALSE)
-        {
-            $path = substr($model, 0, ++$last_slash);
-            $model = substr($model, $last_slash);
-        }
-        */
 
-        if (isset($this->$name))
+
+		$x = $this->container->__get($name);
+		if (isset($x))
         {
-            $this->log->error('The model name you are loading is the name of a resource that is already being used: '.$name);
+			//$this->log->error('The model name you are loading is the name of a resource that is already being used: '.$name);
         }
 
-        //if (file_exists($this->appPath .'Models/'.$path.$model.'.php'))
-        //{
-            //require_once($this->appPath .'Models/'.$path.$model.'.php');
-
-        $this->modules[$name] = new $model();
-        //}
+		$this->container->__set($name, new $model($this->container));
 
     }
 } 

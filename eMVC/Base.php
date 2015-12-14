@@ -4,31 +4,21 @@
 namespace eMVC;
 
 
-use
-    Twig_Environment;
-use
-    Twig_Loader_Filesystem;
+use Application\Base\Container;
 
 class Base{
 
     private  $router;
 
-    public function __construct($appPath){
+	public function __construct($appPath, Container $container) {
         $this->appPath = $appPath;
-        $this->router = new Router();
-    }
-
-    public function startSession(){
-        session_start();
+		$this->router = new Router($container);
     }
 
     public function setRoute($myRoutes){
         $this->router->route($myRoutes);
     }
 
-    public function setDatabaseObject($db){
-        $this->router->setDatabase($db);
-    }
 
     public function setAppPath($appPath){
         $this->router->setAppPath($appPath);

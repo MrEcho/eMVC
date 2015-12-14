@@ -2,6 +2,7 @@
 
 namespace eMVC;
 
+use Application\Base\Container;
 use
     eMVC\interfaces\iRouter;
 
@@ -9,11 +10,12 @@ class Router {
 
     private static $instance;
 
-    public $database;
+	public $container;
     public $appPath;
 
-    public function __construct()
+	public function __construct(Container $container)
     {
+		$this->container = $container;
         self::$instance =& $this;
     }
 
@@ -79,7 +81,7 @@ class Router {
 
         if($validc && $validf){
             $class = '\\Application\\Controller\\' . $loadcontroler;
-            $c = new $class();
+			$c = new $class($this->container);
             $c->$loadfunction($path);
         }
         else {

@@ -3,12 +3,21 @@
 namespace eMVC\core;
 
 
+use Application\Base\Container;
+
 class ModelCore {
 
+	/** @var \Application\Base\Container $container */
+	public $container;
 
-    public function __get($key)
+	public function __construct() {
+		$this->container = Container::get_instance();
+	}
+
+	public function __get($key)
     {
         return ControllerCore::get_instance()->$key;
     }
+
 
 }

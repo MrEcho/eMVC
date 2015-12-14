@@ -2,16 +2,21 @@
 
 namespace Application\Models\tabs;
 
-use eMVC\core\ModelCore;
+use Application\Base\BaseModel;
 
-class FirstClass extends ModelCore
+
+class FirstClass extends BaseModel
 {
 
+	/**
+	 *
+	 */
 	public function first() {
 
-		//echo '<pre>'; print_r($this->modules);  echo '</pre>';
+		echo '<pre>';
+		print_r($this);
+		echo '</pre>';
 
-		$this->session->test();
 	}
 
 }

@@ -1,15 +1,38 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mrecho
- * Date: 1/27/15
- * Time: 5:14 AM
- */
 
 namespace Application\Objects;
 
+use Application\Base\Container;
 
 class myDatabase
 {
+	public $read = null;
+	public $write = null;
+
+	public function __construct(Container $container) {
+		try {
+			$this->read = new \PDO('mysql:host=localhost;dbname=cirrus', 'cirrus', 'cirrus', array(
+					\PDO::MYSQL_ATTR_COMPRESS => true,
+					\PDO::ATTR_PERSISTENT => true
+				));
+		} catch (\PDOException $e) {
+			print_r($e);
+		}
+
+		try {
+			$this->write = new \PDO('mysql:host=localhost;dbname=cirrus', 'cirrus', 'cirrus', array(
+					\PDO::MYSQL_ATTR_COMPRESS => true,
+					\PDO::ATTR_PERSISTENT => true
+				));
+		} catch (\PDOException $e) {
+			print_r($e);
+		}
+
+	}
+
+	public function __destruct() {
+		$this->write = null;
+		$this->read = null;
+	}
 
 } 
