@@ -14,6 +14,8 @@ class BaseController extends ControllerCore
 {
 
 	public $view = array("head" => array("title" => "", "meta" => array(), "css" => array(), "js" => array()), "settings" => array(), "data" => array());
+
+	/** @var  Twig_Environment $twig */
 	public $twig;
 
 	public function __construct(Container $container) {
@@ -25,6 +27,12 @@ class BaseController extends ControllerCore
 		$container->__set('view', $this->view);
 	}
 
+	/**
+	 * This is the only way way besides ControllerCore->load_module to get things into Container.
+	 *
+	 * @param $name Container[name]
+	 * @param $object Object
+	 */
 	public function __set($name, $object) {
 		$this->container->__set($name, $object);
 	}

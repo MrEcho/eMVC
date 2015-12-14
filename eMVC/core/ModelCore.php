@@ -14,10 +14,4 @@ class ModelCore {
 		$this->container = Container::get_instance();
 	}
 
-	public function __get($key)
-    {
-        return ControllerCore::get_instance()->$key;
-    }
-
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Controller;
+namespace Application\Controller\Cirrus;
 
 use Application\Base\BaseController;
 use Application\Base\Container;
@@ -16,7 +16,7 @@ class Main extends BaseController
 	public function index() {
 		// Just messing with things.
 
-		//$this->setupTwig();
+		$this->setupTwig();
 
 		//echo '<pre>'; print_r($this);  echo '</pre>';
 
@@ -25,7 +25,7 @@ class Main extends BaseController
 
 		$this->FirstClass->first();
 
-		//echo $this->twig->render('index.html', $this->view);
+		echo $this->twig->render('index.html', $this->view);
 
 		//echo '<pre>'; print_r($this);  echo '</pre>';
 

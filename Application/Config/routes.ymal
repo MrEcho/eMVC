@@ -1,11 +1,11 @@
 "default":
     "default":
         "default":
-            Controller:  Main
-            Function: index
+            Controller:  "Cirrus\\Main"
+            Function: "index"
     "index":
         "default":
-            Controller:  Main
+            Controller:  "Cirrus\\Main"
             Function: index
 "test2.com":
     "default":

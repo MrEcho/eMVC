@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mrecho
- * Date: 12/13/15
- * Time: 5:49 PM
- */
 
 namespace Application\Base;
 
@@ -25,11 +19,15 @@ class BaseModel extends ModelCore
 	public function __construct() {
 		parent::__construct();
 
-
+		/** Load Classes that are needed everywhere */
 		$this->database = $this->container->database;
 		$this->session = $this->container->session;
 	}
 
+	/**
+	 * @param $name String This is the module in the Container
+	 * @return mixed
+	 */
 	public function __get($name) {
 		return $this->container->__get($name);
 	}

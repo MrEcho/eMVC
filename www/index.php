@@ -44,5 +44,5 @@ $eMVC->setAppPath($appPath);
 
 $eMVC->setRoute($myRoutes);
 
-echo round(memory_get_usage() / 1024, 5) . 'KB<br>';
-echo(microtime(true) - $STARTTIME);
+//echo round(memory_get_usage() / 1024, 5) . 'KB<br>';
+//echo(microtime(true) - $STARTTIME);

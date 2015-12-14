@@ -71,22 +71,30 @@ class Router {
             }
             else {
                 http_response_code(404);
+				require_once $this->appPath . "/View/404.html";
             }
         } else {
             http_response_code(404);
+			require_once $this->appPath . "/View/404.html";
         }
 
 
         unset($layout);
 
-        if($validc && $validf){
-            $class = '\\Application\\Controller\\' . $loadcontroler;
-			$c = new $class($this->container);
-            $c->$loadfunction($path);
-        }
-        else {
-            http_response_code(404);
-        }
+		try {
+			if ($validc && $validf) {
+				$class = '\\Application\\Controller\\' . $loadcontroler;
+				$c = new $class($this->container);
+				$c->$loadfunction($path);
+			}
+			else {
+				http_response_code(404);
+				require_once $this->appPath . "/View/404.html";
+			}
+		} catch (\Exception $e) {
+			http_response_code(404);
+			require_once $this->appPath . "/View/error.html";
+		}
     }
 
     public function setAppPath($appPath){
